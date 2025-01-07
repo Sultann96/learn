@@ -1,7 +1,10 @@
 import express from "express"
 import cookieParser from "cookie-parser"
-import {authRouter,userRouter} from "./routes"
+import { authRouter, userRouter } from "./routes"
 
+if(!process.env){
+ throw new Error("nodemailer:mail pass")
+}
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
