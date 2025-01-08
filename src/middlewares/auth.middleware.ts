@@ -16,21 +16,20 @@ export const auth = ({
     if (!authorization && authRequired) {
       res.status(401).send("авторизуйтесь!!сук")
       return
-    }else if (!authorization && !authRequired){
+    } else if (!authorization && !authRequired) {
       next()
       return
     }
 
-    const { id, password }: {id:number, password:string} = JSON.parse(authorization)
+    const { id, password }: { id: number, password: string } = JSON.parse(authorization)
 
     if (!id && id !== 0 || !password) {
-      res.status(401).send("авторизуйтесь!!сук")
-      return
+      return res.status(401).send("авторизуйтесь!!сук")
     }
 
 
-    const user = await User.getOne({id})
-    if(!user){
+    const user = await User.getOne({ id })
+    if (!user) {
       res.status(404).send("пользователь не существует")
       return
     }
@@ -45,7 +44,7 @@ export const auth = ({
       return res.status(404).send("не правильный пароль")
     }
 
-    req.user = { id: user.id, isAdmin}
+    req.user = { id: user.id, isAdmin }
     next()
   }
 }

@@ -7,5 +7,5 @@ export const validate = (req: Request, res: Response, next: NextFunction) => {
     return next()
   }
 
-  return res.send({ errors: result.array() })
+  return res.json({ errors: result.array() })
 }

@@ -7,7 +7,7 @@ import { Role, UserWithIdModel } from "../models/User.model"
 import { BadRequestError, NotFoundError, UnauthorizatedError } from "./errors"
 
 class AuthService {
-  async code({ email }: { email: string }): Promise<{ message: string }> {
+  async authCode({ email }: { email: string }): Promise<{ message: string }> {
     const codeToEmail = crypto.randomBytes(2).toString("hex")
     await Code.updateMany({ email }, { disabled: true })
 
